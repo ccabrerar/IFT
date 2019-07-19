@@ -75,7 +75,7 @@ if (!$data = mysqli_connect($db['host'],$db['user'],$db['pass'])) {
 // La base de datos contiene los códigos de área a 3 dígitos para mayor facilidad (y evitar el problema con 55, 33 y 81)
 $area   = substr($numero,0,3);
 $local  = substr($numero,3);
-$serie  = substr($local,0,3);
+$serie  = substr($numero,3,3);
 
 $rango  = substr($numero,6);
 
