@@ -32,7 +32,7 @@
 
 
 // Cambiar el contenido de este arreglo por todos los códigos de área que puedan interpretarse como locales
-$local = array('55','56');
+$area_local = array('55','56');
 
 // Parametros de acceso a la base de datos. Debe existir la tabla `ift`. Usa el archivo ift.sql o ift_extended.sql para crearla
 $db['user'] = 'cron';
@@ -81,7 +81,7 @@ $rango  = substr($numero,6);
 
 // Por default un número no es local. Evaluaremos todo el arreglo $local para saber si el número es foráneo o local
 $es_local = FALSE;
-foreach ($local as $x) {
+foreach ($area_local as $x) {
     if (substr($numero,0,strlen($x)) == $x) {
         $es_local = TRUE;
         $local  = substr($numero,strlen($x));
