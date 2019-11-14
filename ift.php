@@ -58,12 +58,7 @@ if ( (!is_numeric($argv[1])) || (strlen($argv[1]) < 10) ) {
     $agi->set_variable('COMPLETO','');
     exit;
 }
-
-// Nos quedamos solo con los ultimos 10 digitos para asegurar que quitamos cualquier prefijo
-$numero = substr($argv[1],-10);
-
-
-if (!$data = mysqli_connect($db['host'],$db['user'],$db['pass'])) {
+elseif (!$data = mysqli_connect($db['host'],$db['user'],$db['pass'])) {
     $agi->verbose('Error de conexion a la BD');
     $agi->set_variable('MOVIL',0);
     $agi->set_variable('PREFIJO','');
@@ -71,11 +66,14 @@ if (!$data = mysqli_connect($db['host'],$db['user'],$db['pass'])) {
     exit;
 }
 
+// Nos quedamos solo con los ultimos 10 digitos para asegurar que quitamos cualquier prefijo
+$numero = substr($argv[1],-10);
+
 // Definimos los diferentes componentes del número
 // La base de datos contiene los códigos de área a 3 dígitos para mayor facilidad (y evitar el problema con 55, 33 y 81)
 $area   = substr($numero,0,3);
 $local  = substr($numero,3);
-$serie  = substr($local,0,3);
+$serie  = substr($numero,3,3);
 
 $rango  = substr($numero,6);
 
